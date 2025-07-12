@@ -4,7 +4,42 @@ A beautifully designed React Native workout tracking app implementing the popula
 
 ## 📱 Screenshots
 
-<!-- Add screenshots here -->
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/82ba6e5c-6fd4-40a8-8e8e-c653356a7a09" alt="Workout Screen" width="250"/>
+        <br/>
+        <strong>Workout Screen</strong>
+        <br/>
+        <em>Start and track your 5x5 workouts</em>
+      </td>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/39eb9797-acbb-4bb5-9fe8-5a589a9c2d05" alt="Exercise Progress" width="250"/>
+        <br/>
+        <strong>Exercise Progress</strong>
+        <br/>
+        <em>Track your sets and progress</em>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/c3632fe1-f2d8-4aa5-a795-ba514455ad12" alt="History Screen" width="250"/>
+        <br/>
+        <strong>History Screen</strong>
+        <br/>
+        <em>View detailed statistics and charts</em>
+      </td>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/744b6386-a9e3-4b17-9961-fec8a868bb97" alt="Progress Analytics" width="250"/>
+        <br/>
+        <strong>Progress Analytics</strong>
+        <br/>
+        <em>Analyze your workout performance</em>
+      </td>
+    </tr>
+  </table>
+</div>
 
 ## ✨ Features
 
