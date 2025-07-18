@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "expo-status-bar";
 import { Platform, Text, View } from "react-native";
+import "./global.css";
 
 // Import screens
 import WorkoutScreen from "./src/screens/WorkoutScreen";

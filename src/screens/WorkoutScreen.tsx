@@ -10,7 +10,7 @@ import {
 	Animated,
 	Dimensions,
 } from "react-native";
-import { Exercise } from "../types";
+import { Exercise } from "../types/types";
 import { useWorkout } from "../context/WorkoutContext";
 import { ExerciseSetCard } from "../components/ExerciseSetCard";
 import {

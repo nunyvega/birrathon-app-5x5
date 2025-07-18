@@ -10,7 +10,7 @@ import {
 	Dimensions,
 	Animated,
 } from "react-native";
-import { Exercise } from "../types";
+
 import { useWorkout } from "../context/WorkoutContext";
 import { ProgressLineChart } from "../components/ProgressLineChart";
 import {
@@ -22,6 +22,7 @@ import {
 	ButtonStyles,
 	BorderRadius,
 } from "../styles/AppleDesignSystem";
+import { Exercise } from "../types/types";
 
 const { width: screenWidth } = Dimensions.get("window");
 

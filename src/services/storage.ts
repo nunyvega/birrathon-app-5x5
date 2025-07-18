@@ -6,7 +6,7 @@ import {
   STORAGE_KEYS,
   DEFAULT_WEIGHTS,
   Exercise,
-} from '../types';
+} from  "../types/types"
 
 /**
  * Storage service for managing app data persistence

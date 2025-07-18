@@ -15,7 +15,7 @@ import {
 	WORKOUT_CONFIG,
 	EXERCISE_CONFIG,
 	DEFAULT_WEIGHTS,
-} from "../types";
+} from "../types/types";
 import { StorageService } from "../services/storage";
 import { ProgressionService } from "../services/progression";
 
