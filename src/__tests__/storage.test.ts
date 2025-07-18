@@ -1,5 +1,5 @@
 import { StorageService } from '../services/storage';
-import { Session, WorkingWeights, DEFAULT_WEIGHTS } from '../types';
+import { Session, WorkingWeights, DEFAULT_WEIGHTS } from "../types/types"
 
 // Mock AsyncStorage
 const mockAsyncStorage = {

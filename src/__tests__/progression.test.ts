@@ -1,5 +1,5 @@
 import { ProgressionService } from '../services/progression';
-import { Exercise, Session, ExerciseSession } from '../types';
+import { Exercise, Session, ExerciseSession } from  "../types/types"
 
 describe('ProgressionService', () => {
   describe('progressWeight', () => {

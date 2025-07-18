@@ -8,7 +8,7 @@ import {
 	Dimensions,
 	Platform,
 } from "react-native";
-import { Exercise, ExerciseSession } from "../types";
+import { Exercise, ExerciseSession } from "../types/types";
 import { RestTimer } from "./RestTimer";
 import {
 	Colors,

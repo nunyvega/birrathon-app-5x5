@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-gifted-charts";
-import { Exercise, Session } from "../types";
+import { Exercise, Session } from "../types/types";
 import {
 	Colors,
 	Typography,
