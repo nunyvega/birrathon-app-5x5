@@ -20,7 +20,6 @@ import {
 	Shadows,
 	CardStyles,
 	ButtonStyles,
-	BorderRadius,
 } from "../styles/AppleDesignSystem";
 
 const { width: screenWidth } = Dimensions.get("window");

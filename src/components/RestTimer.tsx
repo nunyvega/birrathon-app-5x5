@@ -15,21 +15,13 @@ import {
 	ButtonStyles,
 	BorderRadius,
 } from "../styles/AppleDesignSystem";
-
-interface RestTimerProps {
-	isRunning: boolean;
-	onReset: () => void;
-	onToggle: () => void;
-	restTarget?: number; // Target rest time in seconds (default 90)
-	autoStart?: boolean; // Whether to auto-start when isRunning becomes true
-}
+import { RestTimerProps } from "../types/types";
 
 export const RestTimer: React.FC<RestTimerProps> = ({
 	isRunning,
 	onReset,
 	onToggle,
 	restTarget = 90,
-	autoStart = true,
 }) => {
 	const [elapsedSeconds, setElapsedSeconds] = useState(0);
 	const [hasVibrated, setHasVibrated] = useState(false);

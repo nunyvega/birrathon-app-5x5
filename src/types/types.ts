@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 // Exercise types
 export type Exercise = 'Squat' | 'Bench Press' | 'Barbell Row' | 'Overhead Press' | 'Deadlift';
 
@@ -180,3 +182,28 @@ export type ExerciseKey = keyof typeof EXERCISE_CONFIG;
 
 // Helper type for strict string literals
 export type Exact<T, U extends T> = U; 
+
+export interface ExerciseSetCardProps {
+  exercise: ExerciseSession;
+  onSetComplete: (setIndex: number) => void;
+  onWeightChange?: (newWeight: number) => void;
+  isEditable?: boolean;
+}
+
+export interface WorkoutProviderProps {
+  children: ReactNode;
+}
+
+export interface ProgressLineChartProps {
+  exercise: Exercise;
+  sessions: Session[];
+  height?: number;
+}
+
+export interface RestTimerProps {
+  isRunning: boolean;
+  onReset: () => void;
+  onToggle: () => void;
+  restTarget?: number; // Target rest time in seconds (default 90)
+  autoStart?: boolean; // Whether to auto-start when isRunning becomes true
+}

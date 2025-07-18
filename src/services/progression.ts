@@ -6,7 +6,6 @@ import {
   FailureTracker,
   DEFAULT_PROGRESSION,
   UPPER_BODY_EXERCISES,
-  LOWER_BODY_EXERCISES,
 } from  "../types/types"
 
 /**

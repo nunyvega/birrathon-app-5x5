@@ -5,10 +5,9 @@ import {
 	TouchableOpacity,
 	Alert,
 	Animated,
-	Dimensions,
 	Platform,
 } from "react-native";
-import { Exercise, ExerciseSession } from "../types/types";
+import { ExerciseSetCardProps } from "../types/types";
 import { RestTimer } from "./RestTimer";
 import {
 	Colors,
@@ -16,18 +15,8 @@ import {
 	Spacing,
 	Shadows,
 	CardStyles,
-	ButtonStyles,
 	BorderRadius,
 } from "../styles/AppleDesignSystem";
-
-const { width: screenWidth } = Dimensions.get("window");
-
-interface ExerciseSetCardProps {
-	exercise: ExerciseSession;
-	onSetComplete: (setIndex: number) => void;
-	onWeightChange?: (newWeight: number) => void;
-	isEditable?: boolean;
-}
 
 export const ExerciseSetCard: React.FC<ExerciseSetCardProps> = ({
 	exercise,

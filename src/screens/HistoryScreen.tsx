@@ -6,7 +6,6 @@ import {
 	TouchableOpacity,
 	SafeAreaView,
 	StatusBar,
-	Alert,
 	Dimensions,
 	Animated,
 } from "react-native";

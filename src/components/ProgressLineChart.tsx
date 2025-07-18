@@ -1,23 +1,16 @@
 import React from "react";
 import { View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-gifted-charts";
-import { Exercise, Session } from "../types/types";
+import { ProgressLineChartProps } from "../types/types";
 import {
 	Colors,
 	Typography,
 	Spacing,
-	Shadows,
 	CardStyles,
 	BorderRadius,
 } from "../styles/AppleDesignSystem";
 
 const screenWidth = Dimensions.get("window").width;
-
-interface ProgressLineChartProps {
-	exercise: Exercise;
-	sessions: Session[];
-	height?: number;
-}
 
 export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 	exercise,

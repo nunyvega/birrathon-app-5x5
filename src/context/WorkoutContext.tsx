@@ -1,10 +1,4 @@
-import React, {
-	createContext,
-	useContext,
-	useState,
-	useEffect,
-	ReactNode,
-} from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import {
 	Exercise,
 	Session,
@@ -15,6 +9,7 @@ import {
 	WORKOUT_CONFIG,
 	EXERCISE_CONFIG,
 	DEFAULT_WEIGHTS,
+	WorkoutProviderProps,
 } from "../types/types";
 import { StorageService } from "../services/storage";
 import { ProgressionService } from "../services/progression";
@@ -33,10 +28,6 @@ const generateUUID = (): string => {
 		}
 	);
 };
-
-interface WorkoutProviderProps {
-	children: ReactNode;
-}
 
 export const WorkoutProvider: React.FC<WorkoutProviderProps> = ({
 	children,
