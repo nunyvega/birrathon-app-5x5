@@ -234,11 +234,9 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 					stepValue={5}
 					yAxisThickness={1}
 					xAxisThickness={1}
-					animateOnDataChange
-					animationDuration={800}
-					onDataChangeAnimationDuration={300}
-					isAnimated
-					animationEasing="ease-out"
+					// animateOnDataChange
+					// onDataChangeAnimationDuration={300}
+					// animationEasing="ease-out"
 				/>
 			</View>
 
