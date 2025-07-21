@@ -314,13 +314,11 @@ export const HistoryScreen: React.FC = () => {
 					)}
 
 					{/* Progress Chart */}
-					<View style={styles.chartContainer}>
-						<ProgressLineChart
-							exercise={selectedExercise}
-							sessions={sessions}
-							height={300}
-						/>
-					</View>
+					<ProgressLineChart
+						exercise={selectedExercise}
+						sessions={sessions}
+						height={300}
+					/>
 
 					{/* Recent Sessions */}
 					{exerciseHistory.length > 0 && (
@@ -328,6 +326,38 @@ export const HistoryScreen: React.FC = () => {
 							<Text style={styles.cardTitle}>
 								Recent Sessions
 							</Text>
+							<View>
+								<View style={styles.legend}>
+									<View style={styles.legendItem}>
+										<View
+											style={[
+												styles.legendDot,
+												{
+													backgroundColor:
+														Colors.systemGreen,
+												},
+											]}
+										/>
+										<Text style={styles.legendText}>
+											Successful Session
+										</Text>
+									</View>
+									<View style={styles.legendItem}>
+										<View
+											style={[
+												styles.legendDot,
+												{
+													backgroundColor:
+														Colors.systemRed,
+												},
+											]}
+										/>
+										<Text style={styles.legendText}>
+											Incomplete Session
+										</Text>
+									</View>
+								</View>
+							</View>
 							<View style={styles.sessionsList}>
 								{exerciseHistory
 									.slice(-8)
@@ -650,6 +680,28 @@ const styles = {
 		color: Colors.secondaryLabel,
 		textAlign: "center" as const,
 		lineHeight: 22,
+	},
+	legend: {
+		flexDirection: "row" as const,
+		justifyContent: "center" as const,
+		gap: Spacing.xl,
+		paddingTop: Spacing.lg,
+		borderTopWidth: 0.5,
+		borderTopColor: Colors.systemGray5,
+	},
+	legendItem: {
+		flexDirection: "row" as const,
+		alignItems: "center" as const,
+		gap: Spacing.md,
+	},
+	legendDot: {
+		width: 8,
+		height: 8,
+		borderRadius: 4,
+	},
+	legendText: {
+		...Typography.footnote,
+		color: Colors.secondaryLabel,
 	},
 };
 

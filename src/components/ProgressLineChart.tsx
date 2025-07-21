@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-gifted-charts";
 import { ProgressLineChartProps } from "../types/types";
@@ -10,13 +10,29 @@ import {
 	BorderRadius,
 } from "../styles/AppleDesignSystem";
 
-const screenWidth = Dimensions.get("window").width;
-
 export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 	exercise,
 	sessions,
 	height = 280,
 }) => {
+	const [screenWidth, setScreenWidth] = useState(
+		Dimensions.get("window").width
+	);
+
+	useEffect(() => {
+		const updateWidth = () => {
+			setScreenWidth(Dimensions.get("window").width);
+		};
+
+		updateWidth(); // Set immediately when exercise changes
+
+		// Optional: Add listener for orientation change
+		const subscription = Dimensions.addEventListener("change", updateWidth);
+
+		return () => {
+			subscription.remove();
+		};
+	}, [exercise]);
 	// Process sessions to get chart data
 	const getChartData = () => {
 		const exerciseSessions = sessions
@@ -187,7 +203,7 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 			<View style={styles.chartContainer}>
 				<LineChart
 					data={chartData}
-					width={screenWidth - 80}
+					width={screenWidth}
 					height={height}
 					color={Colors.systemBlue}
 					thickness={3}
@@ -275,26 +291,6 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 			</View>
 
 			{/* Legend */}
-			<View style={styles.legend}>
-				<View style={styles.legendItem}>
-					<View
-						style={[
-							styles.legendDot,
-							{ backgroundColor: Colors.systemGreen },
-						]}
-					/>
-					<Text style={styles.legendText}>Successful Session</Text>
-				</View>
-				<View style={styles.legendItem}>
-					<View
-						style={[
-							styles.legendDot,
-							{ backgroundColor: Colors.systemRed },
-						]}
-					/>
-					<Text style={styles.legendText}>Incomplete Session</Text>
-				</View>
-			</View>
 		</View>
 	);
 };
@@ -345,6 +341,7 @@ const styles = {
 		alignItems: "center" as const,
 		marginBottom: Spacing.xl,
 		paddingHorizontal: Spacing.sm,
+		overflow: "hidden" as "hidden",
 	},
 	detailedStats: {
 		marginBottom: Spacing.xl,
@@ -380,28 +377,6 @@ const styles = {
 	trendValue: {
 		...Typography.callout,
 		fontWeight: "600" as const,
-	},
-	legend: {
-		flexDirection: "row" as const,
-		justifyContent: "center" as const,
-		gap: Spacing.xl,
-		paddingTop: Spacing.lg,
-		borderTopWidth: 0.5,
-		borderTopColor: Colors.systemGray5,
-	},
-	legendItem: {
-		flexDirection: "row" as const,
-		alignItems: "center" as const,
-		gap: Spacing.md,
-	},
-	legendDot: {
-		width: 8,
-		height: 8,
-		borderRadius: 4,
-	},
-	legendText: {
-		...Typography.footnote,
-		color: Colors.secondaryLabel,
 	},
 	emptyState: {
 		alignItems: "center" as const,
