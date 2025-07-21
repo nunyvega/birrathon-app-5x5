@@ -386,7 +386,7 @@ const styles = {
 	},
 	setsGrid: {
 		flexDirection: "row" as const,
-		justifyContent: "space-between" as const,
+		justifyContent: "space-around" as const,
 		alignItems: "center" as const,
 		paddingHorizontal: Spacing.md,
 	},
