@@ -66,5 +66,18 @@
   "incompleteSession": "Séance incomplète",
   "noDataYet": "Pas encore de données",
   "completeSomeWorkouts": "Effectuez quelques entraînements avec {{exercise}} pour voir votre progression ici.",
-  "loadingProgress": "Chargement de votre progression..."
+  "loadingProgress": "Chargement de votre progression...",
+  "progressTitle": "Progression de {{exercise}}",
+  "trackStrengthGains": "Suivez vos gains de force",
+  "noDataAvailable": "Aucune donnée disponible",
+  "completeSomeWorkoutsChart": "Effectuez quelques séances de {{exercise}} pour voir votre graphique de progression ici.",
+  "current": "Actuel",
+  "totalGain": "Gain total",
+  "sessions": "Séances",
+  "startingWeight": "Poids de départ",
+  "avgIncrease": "Augmentation moy.",
+  "trend": "Tendance",
+  "Stable": "Stable",
+  "Increasing": "En hausse",
+  "Decreasing": "En baisse"
 } 
