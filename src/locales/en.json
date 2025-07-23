@@ -79,5 +79,6 @@
   "trend": "Trend",
   "Stable": "Stable",
   "Increasing": "Increasing",
-  "Decreasing": "Decreasing"
+  "Decreasing": "Decreasing",
+  "enterNewWeight": "Enter new weight"
 } 

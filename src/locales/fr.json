@@ -79,5 +79,6 @@
   "trend": "Tendance",
   "Stable": "Stable",
   "Increasing": "En hausse",
-  "Decreasing": "En baisse"
+  "Decreasing": "En baisse",
+  "enterNewWeight": "Entrez le nouveau poids"
 } 

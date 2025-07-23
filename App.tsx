@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "expo-status-bar";
@@ -6,6 +6,7 @@ import { Platform, Text, View } from "react-native";
 import "./global.css";
 import { useTranslation } from "react-i18next";
 import "./src/i18n";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Import screens
 import WorkoutScreen from "./src/screens/WorkoutScreen";
@@ -111,7 +112,25 @@ export default function App() {
 	const [selectedLanguage, setSelectedLanguage] = useState("en");
 	const { t, i18n } = useTranslation();
 
-	React.useEffect(() => {
+	// Load language from AsyncStorage on mount
+	useEffect(() => {
+		const loadLanguage = async () => {
+			const savedLang = await AsyncStorage.getItem("appLanguage");
+			if (savedLang) {
+				setSelectedLanguage(savedLang);
+				i18n.changeLanguage(savedLang);
+			}
+		};
+		loadLanguage();
+	}, [i18n]);
+
+	// Save language to AsyncStorage and update state
+	const handleLanguageChange = async (lang: string) => {
+		await AsyncStorage.setItem("appLanguage", lang);
+		setSelectedLanguage(lang);
+	};
+
+	useEffect(() => {
 		i18n.changeLanguage(selectedLanguage);
 	}, [selectedLanguage, i18n]);
 
@@ -188,7 +207,7 @@ export default function App() {
 						headerRight: () => (
 							<LanguagePicker
 								selectedLanguage={selectedLanguage}
-								onSelect={setSelectedLanguage}
+								onSelect={handleLanguageChange}
 							/>
 						),
 					})}

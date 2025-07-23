@@ -76,8 +76,9 @@
   "sessions": "Sesiones",
   "startingWeight": "Peso inicial",
   "avgIncrease": "Aumento promedio",
-  "trend": "Tendencia:",
+  "trend": "Tendencia",
   "Stable": "Estable",
   "Increasing": "En aumento",
-  "Decreasing": "En descenso"
+  "Decreasing": "En descenso",
+  "enterNewWeight": "Introduce el nuevo peso"
 } 
