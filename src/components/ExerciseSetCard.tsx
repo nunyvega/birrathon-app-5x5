@@ -17,6 +17,7 @@ import {
 	CardStyles,
 	BorderRadius,
 } from "../styles/AppleDesignSystem";
+import { useTranslation } from "react-i18next";
 
 export const ExerciseSetCard: React.FC<ExerciseSetCardProps> = ({
 	exercise,
@@ -29,6 +30,7 @@ export const ExerciseSetCard: React.FC<ExerciseSetCardProps> = ({
 		null
 	);
 	const [scaleAnim] = useState(new Animated.Value(1));
+	const { t } = useTranslation();
 
 	// Auto-start timer when a set is completed
 	useEffect(() => {
@@ -70,7 +72,7 @@ export const ExerciseSetCard: React.FC<ExerciseSetCardProps> = ({
 		// Web-compatible prompt solution
 		if (Platform.OS === "web") {
 			const newWeightStr = window.prompt(
-				`Update Weight\n\nCurrent weight: ${exercise.weight} kg\nEnter new weight:`,
+				`${t("updateWeight")}\n\n${t("currentWeight")}: ${exercise.weight} ${t("kg")}\n${t("enterNewWeight")}:`,
 				exercise.weight.toString()
 			);
 
@@ -80,9 +82,9 @@ export const ExerciseSetCard: React.FC<ExerciseSetCardProps> = ({
 					onWeightChange(newWeight);
 				} else {
 					Alert.alert(
-						"Invalid Weight",
-						"Please enter a valid weight between 1-500 kg.",
-						[{ text: "OK", style: "default" }],
+						t("invalidWeight"),
+						t("invalidWeightMsg"),
+						[{ text: t("ok"), style: "default" }],
 						{ cancelable: true }
 					);
 				}
@@ -90,12 +92,12 @@ export const ExerciseSetCard: React.FC<ExerciseSetCardProps> = ({
 		} else {
 			// Mobile platforms with Alert.prompt
 			Alert.prompt(
-				"Update Weight",
-				`Current weight: ${exercise.weight} kg\nEnter new weight:`,
+				t("updateWeight"),
+				`${t("currentWeight")}: ${exercise.weight} ${t("kg")}\n${t("enterNewWeight")}:`,
 				[
-					{ text: "Cancel", style: "cancel" },
+					{ text: t("cancel"), style: "cancel" },
 					{
-						text: "Update",
+						text: t("update"),
 						style: "default",
 						onPress: (value) => {
 							if (value) {
@@ -108,9 +110,9 @@ export const ExerciseSetCard: React.FC<ExerciseSetCardProps> = ({
 									onWeightChange(newWeight);
 								} else {
 									Alert.alert(
-										"Invalid Weight",
-										"Please enter a valid weight between 1-500 kg.",
-										[{ text: "OK", style: "default" }],
+										t("invalidWeight"),
+										t("invalidWeightMsg"),
+										[{ text: t("ok"), style: "default" }],
 										{ cancelable: true }
 									);
 								}
@@ -187,7 +189,7 @@ export const ExerciseSetCard: React.FC<ExerciseSetCardProps> = ({
 			{/* Exercise Header */}
 			<View style={styles.header}>
 				<View style={styles.exerciseInfo}>
-					<Text style={styles.exerciseName}>{exercise.name}</Text>
+					<Text style={styles.exerciseName}>{t(exercise.name)}</Text>
 					<View style={styles.weightSection}>
 						<TouchableOpacity
 							style={styles.weightButton}
@@ -203,7 +205,7 @@ export const ExerciseSetCard: React.FC<ExerciseSetCardProps> = ({
 							{isEditable && (
 								<View style={styles.editIndicator}>
 									<Text style={styles.editText}>
-										tap to edit
+										{t("tapToEdit")}
 									</Text>
 								</View>
 							)}
@@ -219,7 +221,9 @@ export const ExerciseSetCard: React.FC<ExerciseSetCardProps> = ({
 					</View>
 					{isExerciseCompleted() && (
 						<View style={styles.completedBadge}>
-							<Text style={styles.completedText}>✓ Complete</Text>
+							<Text style={styles.completedText}>
+								{t("complete")}
+							</Text>
 						</View>
 					)}
 				</View>
@@ -236,14 +240,16 @@ export const ExerciseSetCard: React.FC<ExerciseSetCardProps> = ({
 					/>
 				</View>
 				<Text style={styles.progressText}>
-					{Math.round(getCompletionPercentage())}% Complete
+					{t("percentComplete", {
+						percent: Math.round(getCompletionPercentage()),
+					})}
 				</Text>
 			</View>
 
 			{/* Set Buttons */}
 			<View style={styles.setsSection}>
 				<Text style={styles.setsTitle}>
-					Sets ({exercise.targetReps} reps each)
+					{t("setsTitle", { reps: exercise.targetReps })}
 				</Text>
 				<View style={styles.setsGrid}>
 					{exercise.sets.map((set, index) => (
@@ -275,8 +281,8 @@ export const ExerciseSetCard: React.FC<ExerciseSetCardProps> = ({
 			<View style={styles.notesSection}>
 				<Text style={styles.notesText}>
 					{exercise.name === "Deadlift"
-						? "💪 Complete 1 set of 5 reps with perfect form"
-						: "🏋️‍♂️ Complete 5 sets of 5 reps • Focus on form over speed"}
+						? t("deadliftNote")
+						: t("defaultNote")}
 				</Text>
 			</View>
 		</Animated.View>

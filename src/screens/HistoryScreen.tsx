@@ -22,6 +22,7 @@ import {
 	BorderRadius,
 } from "../styles/AppleDesignSystem";
 import { Exercise } from "../types/types";
+import { useTranslation } from "react-i18next";
 
 const { width: screenWidth } = Dimensions.get("window");
 
@@ -45,6 +46,7 @@ export const HistoryScreen: React.FC = () => {
 	const [selectedExercise, setSelectedExercise] = useState<Exercise>("Squat");
 	const [showStats, setShowStats] = useState(false);
 	const [fadeAnim] = useState(new Animated.Value(0));
+	const { t } = useTranslation();
 
 	// Animate content on load
 	useEffect(() => {
@@ -131,8 +133,8 @@ export const HistoryScreen: React.FC = () => {
 		);
 
 		return weightIncrease > 0
-			? `+${weightIncrease}kg progress over ${timeSpan} days`
-			: `${weightIncrease}kg change over ${timeSpan} days`;
+			? t("progressOverDays", { weight: weightIncrease, days: timeSpan })
+			: t("changeOverDays", { weight: weightIncrease, days: timeSpan });
 	};
 
 	// Get success rate color
@@ -151,7 +153,7 @@ export const HistoryScreen: React.FC = () => {
 				/>
 				<View style={styles.loadingContainer}>
 					<Text style={styles.loadingText}>
-						Loading your progress...
+						{t("loadingProgress")}
 					</Text>
 				</View>
 			</SafeAreaView>
@@ -168,21 +170,25 @@ export const HistoryScreen: React.FC = () => {
 			<Animated.View style={[styles.content, { opacity: fadeAnim }]}>
 				{/* Header */}
 				<View style={styles.header}>
-					<Text style={styles.headerTitle}>Progress History</Text>
+					<Text style={styles.headerTitle}>
+						{t("progressHistory")}
+					</Text>
 					<TouchableOpacity
 						onPress={toggleStats}
 						style={styles.statsToggleButton}
 						activeOpacity={0.8}
 					>
 						<Text style={styles.statsToggleText}>
-							{showStats ? "Hide Details" : "Show Details"}
+							{showStats ? t("hideDetails") : t("showDetails")}
 						</Text>
 					</TouchableOpacity>
 				</View>
 
 				{/* Exercise Selection */}
 				<View style={styles.exerciseSelectionSection}>
-					<Text style={styles.sectionTitle}>Select Exercise</Text>
+					<Text style={styles.sectionTitle}>
+						{t("selectExercise")}
+					</Text>
 					<ScrollView
 						horizontal
 						showsHorizontalScrollIndicator={false}
@@ -199,7 +205,7 @@ export const HistoryScreen: React.FC = () => {
 								<Text
 									style={getExerciseButtonTextStyle(exercise)}
 								>
-									{exercise}
+									{t(exercise)}
 								</Text>
 							</TouchableOpacity>
 						))}
@@ -215,7 +221,7 @@ export const HistoryScreen: React.FC = () => {
 					<View style={styles.statsCard}>
 						<View style={styles.statsCardHeader}>
 							<Text style={styles.statsCardTitle}>
-								{selectedExercise}
+								{t(selectedExercise)}
 							</Text>
 							<Text style={styles.progressSummary}>
 								{getProgressSummary()}
@@ -228,7 +234,7 @@ export const HistoryScreen: React.FC = () => {
 									{currentWeight}kg
 								</Text>
 								<Text style={styles.statLabel}>
-									Current Weight
+									{t("currentWeight")}
 								</Text>
 							</View>
 							<View style={styles.statItem}>
@@ -236,7 +242,7 @@ export const HistoryScreen: React.FC = () => {
 									{Math.round(estimatedOneRM)}kg
 								</Text>
 								<Text style={styles.statLabel}>
-									Estimated 1RM
+									{t("estimated1RM")}
 								</Text>
 							</View>
 							<View style={styles.statItem}>
@@ -244,7 +250,7 @@ export const HistoryScreen: React.FC = () => {
 									{exerciseHistory.length}
 								</Text>
 								<Text style={styles.statLabel}>
-									Total Sessions
+									{t("totalSessions")}
 								</Text>
 							</View>
 						</View>
@@ -254,12 +260,12 @@ export const HistoryScreen: React.FC = () => {
 					{showStats && (
 						<View style={styles.detailedStatsCard}>
 							<Text style={styles.cardTitle}>
-								Detailed Statistics
+								{t("detailedStatistics")}
 							</Text>
 							<View style={styles.detailedStatsGrid}>
 								<View style={styles.detailedStatRow}>
 									<Text style={styles.detailedStatLabel}>
-										Success Rate
+										{t("successRate")}
 									</Text>
 									<Text
 										style={[
@@ -276,7 +282,7 @@ export const HistoryScreen: React.FC = () => {
 								</View>
 								<View style={styles.detailedStatRow}>
 									<Text style={styles.detailedStatLabel}>
-										Successful Sessions
+										{t("successfulSessions")}
 									</Text>
 									<Text style={styles.detailedStatValue}>
 										{exerciseStats.successfulSessions}
@@ -284,7 +290,7 @@ export const HistoryScreen: React.FC = () => {
 								</View>
 								<View style={styles.detailedStatRow}>
 									<Text style={styles.detailedStatLabel}>
-										Current Streak
+										{t("currentStreak")}
 									</Text>
 									<Text style={styles.detailedStatValue}>
 										{exerciseStats.currentStreak}
@@ -292,7 +298,7 @@ export const HistoryScreen: React.FC = () => {
 								</View>
 								<View style={styles.detailedStatRow}>
 									<Text style={styles.detailedStatLabel}>
-										Best Streak
+										{t("bestStreak")}
 									</Text>
 									<Text style={styles.detailedStatValue}>
 										{exerciseStats.bestStreak}
@@ -300,7 +306,7 @@ export const HistoryScreen: React.FC = () => {
 								</View>
 								<View style={styles.detailedStatRow}>
 									<Text style={styles.detailedStatLabel}>
-										Total Weight Lifted
+										{t("totalWeightLifted")}
 									</Text>
 									<Text style={styles.detailedStatValue}>
 										{Math.round(
@@ -324,7 +330,7 @@ export const HistoryScreen: React.FC = () => {
 					{exerciseHistory.length > 0 && (
 						<View style={styles.recentSessionsCard}>
 							<Text style={styles.cardTitle}>
-								Recent Sessions
+								{t("recentSessions")}
 							</Text>
 							<View>
 								<View style={styles.legend}>
@@ -339,7 +345,7 @@ export const HistoryScreen: React.FC = () => {
 											]}
 										/>
 										<Text style={styles.legendText}>
-											Successful Session
+											{t("successfulSession")}
 										</Text>
 									</View>
 									<View style={styles.legendItem}>
@@ -353,7 +359,7 @@ export const HistoryScreen: React.FC = () => {
 											]}
 										/>
 										<Text style={styles.legendText}>
-											Incomplete Session
+											{t("incompleteSession")}
 										</Text>
 									</View>
 								</View>
@@ -447,11 +453,12 @@ export const HistoryScreen: React.FC = () => {
 					{exerciseHistory.length === 0 && (
 						<View style={styles.emptyStateCard}>
 							<Text style={styles.emptyStateTitle}>
-								No Data Yet
+								{t("noDataYet")}
 							</Text>
 							<Text style={styles.emptyStateText}>
-								Complete some workouts with {selectedExercise}{" "}
-								to see your progress here.
+								{t("completeSomeWorkouts", {
+									exercise: selectedExercise,
+								})}
 							</Text>
 						</View>
 					)}

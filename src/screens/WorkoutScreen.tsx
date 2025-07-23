@@ -21,6 +21,7 @@ import {
 	CardStyles,
 	ButtonStyles,
 } from "../styles/AppleDesignSystem";
+import { useTranslation } from "react-i18next";
 
 const { width: screenWidth } = Dimensions.get("window");
 
@@ -38,6 +39,7 @@ export const WorkoutScreen: React.FC = () => {
 
 	const [workoutInProgress, setWorkoutInProgress] = useState(false);
 	const [fadeAnim] = useState(new Animated.Value(0));
+	const { t } = useTranslation();
 
 	// Check if there's a current session on mount
 	useEffect(() => {
@@ -79,16 +81,16 @@ export const WorkoutScreen: React.FC = () => {
 		try {
 			await updateWeight(exercise, newWeight);
 			Alert.alert(
-				"Weight Updated",
-				`${exercise} weight updated to ${newWeight} kg`,
-				[{ text: "OK", style: "default" }],
+				t("weightUpdated"),
+				t("weightUpdatedMsg", { exercise, weight: newWeight }),
+				[{ text: t("ok"), style: "default" }],
 				{ cancelable: true }
 			);
 		} catch (error) {
 			Alert.alert(
-				"Error",
-				"Failed to update weight. Please try again.",
-				[{ text: "OK", style: "default" }],
+				t("error"),
+				t("weightUpdateError"),
+				[{ text: t("ok"), style: "default" }],
 				{ cancelable: true }
 			);
 		}
@@ -104,18 +106,14 @@ export const WorkoutScreen: React.FC = () => {
 		);
 
 		if (!allExercisesCompleted) {
-			Alert.alert(
-				"Incomplete Workout",
-				"Some exercises are not completed. Are you sure you want to finish?",
-				[
-					{ text: "Cancel", style: "cancel" },
-					{
-						text: "Finish Anyway",
-						onPress: confirmFinishWorkout,
-						style: "destructive",
-					},
-				]
-			);
+			Alert.alert(t("incompleteWorkout"), t("incompleteWorkoutMsg"), [
+				{ text: t("cancel"), style: "cancel" },
+				{
+					text: t("finishAnyway"),
+					onPress: confirmFinishWorkout,
+					style: "destructive",
+				},
+			]);
 		} else {
 			confirmFinishWorkout();
 		}
@@ -129,16 +127,16 @@ export const WorkoutScreen: React.FC = () => {
 			await finishWorkout(currentSession);
 			setWorkoutInProgress(false);
 			Alert.alert(
-				"Workout Complete! 🎉",
-				`Excellent work! Your ${currentWorkoutType} workout is complete. Weights have been updated for your next session.`,
-				[{ text: "Awesome!", style: "default" }],
+				t("workoutComplete"),
+				t("workoutCompleteMsg", { type: currentWorkoutType }),
+				[{ text: t("awesome"), style: "default" }],
 				{ cancelable: true }
 			);
 		} catch (error) {
 			Alert.alert(
-				"Error",
-				"Failed to complete workout. Please try again.",
-				[{ text: "OK", style: "default" }],
+				t("error"),
+				t("workoutCompleteError"),
+				[{ text: t("ok"), style: "default" }],
 				{ cancelable: true }
 			);
 		}
@@ -176,7 +174,7 @@ export const WorkoutScreen: React.FC = () => {
 				/>
 				<View style={styles.loadingContainer}>
 					<Text style={styles.loadingText}>
-						Loading your workout...
+						{t("loadingWorkout")}
 					</Text>
 				</View>
 			</SafeAreaView>
@@ -201,17 +199,19 @@ export const WorkoutScreen: React.FC = () => {
 						{/* Header Section */}
 						<View style={styles.headerSection}>
 							<Text style={styles.workoutTitle}>
-								Ready for Workout {currentWorkoutType}?
+								{t("workoutHeader", {
+									type: currentWorkoutType,
+								})}
 							</Text>
 							<Text style={styles.workoutSubtitle}>
-								Let's build some strength today
+								{t("workoutSubtitle")}
 							</Text>
 						</View>
 
 						{/* Exercises Preview Card */}
 						<View style={styles.exercisePreviewCard}>
 							<Text style={styles.exercisePreviewTitle}>
-								Today's Exercises
+								{t("todaysExercises")}
 							</Text>
 							<View style={styles.exerciseList}>
 								{workoutExercises.map((exercise, index) => (
@@ -229,7 +229,7 @@ export const WorkoutScreen: React.FC = () => {
 										<Text
 											style={styles.exercisePreviewText}
 										>
-											{exercise}
+											{t(exercise)}
 										</Text>
 									</View>
 								))}
@@ -243,17 +243,16 @@ export const WorkoutScreen: React.FC = () => {
 							activeOpacity={0.8}
 						>
 							<Text style={styles.startButtonText}>
-								Start Workout
+								{t("startWorkout")}
 							</Text>
 						</TouchableOpacity>
 
 						{/* Tips Card */}
 						<View style={styles.tipsCard}>
-							<Text style={styles.tipsTitle}>💡 Quick Tips</Text>
-							<Text style={styles.tipsText}>
-								• Rest 90 seconds between sets{"\n"}• Focus on
-								proper form{"\n"}• Stay hydrated throughout
+							<Text style={styles.tipsTitle}>
+								{t("quickTips")}
 							</Text>
+							<Text style={styles.tipsText}>{t("tipsText")}</Text>
 						</View>
 					</ScrollView>
 				) : (
@@ -262,7 +261,9 @@ export const WorkoutScreen: React.FC = () => {
 						{/* Progress Header */}
 						<View style={styles.progressHeader}>
 							<Text style={styles.progressTitle}>
-								Workout {currentWorkoutType} in Progress
+								{t("workoutInProgress", {
+									type: currentWorkoutType,
+								})}
 							</Text>
 							<View style={styles.progressContainer}>
 								<View style={styles.progressBar}>
@@ -276,7 +277,10 @@ export const WorkoutScreen: React.FC = () => {
 									/>
 								</View>
 								<Text style={styles.progressText}>
-									{Math.round(getWorkoutProgress())}% Complete
+									{t("completePercent", {
+										percent:
+											Math.round(getWorkoutProgress()),
+									})}
 								</Text>
 							</View>
 						</View>
@@ -317,7 +321,7 @@ export const WorkoutScreen: React.FC = () => {
 									activeOpacity={0.8}
 								>
 									<Text style={styles.finishButtonText}>
-										Complete Workout
+										{t("completeWorkout")}
 									</Text>
 								</TouchableOpacity>
 							</View>

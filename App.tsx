@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "expo-status-bar";
 import { Platform, Text, View } from "react-native";
 import "./global.css";
+import { useTranslation } from "react-i18next";
+import "./src/i18n";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Import screens
 import WorkoutScreen from "./src/screens/WorkoutScreen";
@@ -20,6 +23,9 @@ import {
 	BorderRadius,
 	Shadows,
 } from "./src/styles/AppleDesignSystem";
+
+// Import LanguagePicker
+import LanguagePicker from "./src/components/LanguagePicker";
 
 // Create bottom tab navigator
 const Tab = createBottomTabNavigator();
@@ -103,6 +109,31 @@ const TabBarIcon = ({
 
 // Main App component
 export default function App() {
+	const [selectedLanguage, setSelectedLanguage] = useState("en");
+	const { t, i18n } = useTranslation();
+
+	// Load language from AsyncStorage on mount
+	useEffect(() => {
+		const loadLanguage = async () => {
+			const savedLang = await AsyncStorage.getItem("appLanguage");
+			if (savedLang) {
+				setSelectedLanguage(savedLang);
+				i18n.changeLanguage(savedLang);
+			}
+		};
+		loadLanguage();
+	}, [i18n]);
+
+	// Save language to AsyncStorage and update state
+	const handleLanguageChange = async (lang: string) => {
+		await AsyncStorage.setItem("appLanguage", lang);
+		setSelectedLanguage(lang);
+	};
+
+	useEffect(() => {
+		i18n.changeLanguage(selectedLanguage);
+	}, [selectedLanguage, i18n]);
+
 	return (
 		<WorkoutProvider>
 			<NavigationContainer theme={navigationTheme}>
@@ -173,22 +204,28 @@ export default function App() {
 
 						// Remove header shadow on Android
 						headerShadowVisible: false,
+						headerRight: () => (
+							<LanguagePicker
+								selectedLanguage={selectedLanguage}
+								onSelect={handleLanguageChange}
+							/>
+						),
 					})}
 				>
 					<Tab.Screen
 						name="Workout"
 						component={WorkoutScreen}
 						options={{
-							tabBarLabel: "Workout",
-							headerTitle: "Workout",
+							tabBarLabel: t("headerTitle"),
+							headerTitle: t("headerTitle"),
 						}}
 					/>
 					<Tab.Screen
 						name="History"
 						component={HistoryScreen}
 						options={{
-							tabBarLabel: "History",
-							headerTitle: "Progress",
+							tabBarLabel: t("History"),
+							headerTitle: t("Progress"),
 						}}
 					/>
 				</Tab.Navigator>

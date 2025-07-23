@@ -16,6 +16,7 @@ import {
 	BorderRadius,
 } from "../styles/AppleDesignSystem";
 import { RestTimerProps } from "../types/types";
+import { useTranslation } from "react-i18next";
 
 export const RestTimer: React.FC<RestTimerProps> = ({
 	isRunning,
@@ -27,6 +28,7 @@ export const RestTimer: React.FC<RestTimerProps> = ({
 	const [hasVibrated, setHasVibrated] = useState(false);
 	const [pulseAnim] = useState(new Animated.Value(1));
 	const [progressAnim] = useState(new Animated.Value(0));
+	const { t } = useTranslation();
 
 	// Timer effect
 	useEffect(() => {
@@ -121,15 +123,16 @@ export const RestTimer: React.FC<RestTimerProps> = ({
 
 	// Get status text
 	const getStatusText = (): string => {
-		if (!isRunning && elapsedSeconds === 0) return "Ready to start";
-		if (!isRunning && elapsedSeconds > 0) return "Paused";
-		if (elapsedSeconds >= restTarget) return "Ready for next set! 💪";
+		if (!isRunning && elapsedSeconds === 0) return t("readyToStart");
+		if (!isRunning && elapsedSeconds > 0) return t("paused");
+		if (elapsedSeconds >= restTarget) return t("readyForNextSet");
 
 		const remaining = restTarget - elapsedSeconds;
-		if (remaining <= 10) return `${remaining} seconds left`;
-		return `${Math.floor(remaining / 60)}:${(remaining % 60)
-			.toString()
-			.padStart(2, "0")} remaining`;
+		if (remaining <= 10) return t("secondsLeft", { seconds: remaining });
+		return t("remainingTime", {
+			minutes: Math.floor(remaining / 60),
+			seconds: (remaining % 60).toString().padStart(2, "0"),
+		});
 	};
 
 	// Get progress percentage
@@ -179,7 +182,7 @@ export const RestTimer: React.FC<RestTimerProps> = ({
 					activeOpacity={0.8}
 				>
 					<Text style={styles.controlButtonText}>
-						{isRunning ? "Pause" : "Start"}
+						{isRunning ? t("pause") : t("start")}
 					</Text>
 				</TouchableOpacity>
 
@@ -188,15 +191,17 @@ export const RestTimer: React.FC<RestTimerProps> = ({
 					onPress={onReset}
 					activeOpacity={0.8}
 				>
-					<Text style={styles.controlButtonText}>Reset</Text>
+					<Text style={styles.controlButtonText}>{t("reset")}</Text>
 				</TouchableOpacity>
 			</View>
 
 			{/* Target Info */}
 			<View style={styles.targetInfo}>
 				<Text style={styles.targetText}>
-					Target: {Math.floor(restTarget / 60)}:
-					{(restTarget % 60).toString().padStart(2, "0")}
+					{t("target", {
+						minutes: Math.floor(restTarget / 60),
+						seconds: (restTarget % 60).toString().padStart(2, "0"),
+					})}
 				</Text>
 			</View>
 		</View>

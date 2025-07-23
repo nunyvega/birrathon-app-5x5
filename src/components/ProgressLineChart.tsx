@@ -9,6 +9,7 @@ import {
 	CardStyles,
 	BorderRadius,
 } from "../styles/AppleDesignSystem";
+import { useTranslation } from "react-i18next";
 
 export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 	exercise,
@@ -18,6 +19,7 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 	const [screenWidth, setScreenWidth] = useState(
 		Dimensions.get("window").width
 	);
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		const updateWidth = () => {
@@ -147,18 +149,21 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 		return (
 			<View style={styles.container}>
 				<View style={styles.header}>
-					<Text style={styles.title}>{exercise} Progress</Text>
+					<Text style={styles.title}>
+						{t("progressTitle", { exercise: t(exercise) })}
+					</Text>
 					<Text style={styles.subtitle}>
-						Track your strength gains
+						{t("trackStrengthGains")}
 					</Text>
 				</View>
 				<View style={styles.emptyState}>
 					<Text style={styles.emptyStateTitle}>
-						No Data Available
+						{t("noDataAvailable")}
 					</Text>
 					<Text style={styles.emptyStateText}>
-						Complete some {exercise} workouts to see your progress
-						chart here.
+						{t("completeSomeWorkoutsChart", {
+							exercise: t(exercise),
+						})}
 					</Text>
 				</View>
 			</View>
@@ -169,8 +174,10 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 		<View style={styles.container}>
 			{/* Header */}
 			<View style={styles.header}>
-				<Text style={styles.title}>{exercise} Progress</Text>
-				<Text style={styles.subtitle}>Track your strength gains</Text>
+				<Text style={styles.title}>
+					{t("progressTitle", { exercise: t(exercise) })}
+				</Text>
+				<Text style={styles.subtitle}>{t("trackStrengthGains")}</Text>
 			</View>
 
 			{/* Quick Stats */}
@@ -179,7 +186,7 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 					<Text style={styles.statValue}>
 						{stats.currentWeight}kg
 					</Text>
-					<Text style={styles.statLabel}>Current</Text>
+					<Text style={styles.statLabel}>{t("current")}</Text>
 				</View>
 				<View style={styles.statItem}>
 					<Text
@@ -191,11 +198,11 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 						{stats.totalIncrease > 0 ? "+" : ""}
 						{stats.totalIncrease}kg
 					</Text>
-					<Text style={styles.statLabel}>Total Gain</Text>
+					<Text style={styles.statLabel}>{t("totalGain")}</Text>
 				</View>
 				<View style={styles.statItem}>
 					<Text style={styles.statValue}>{stats.sessions}</Text>
-					<Text style={styles.statLabel}>Sessions</Text>
+					<Text style={styles.statLabel}>{t("sessions")}</Text>
 				</View>
 			</View>
 
@@ -261,7 +268,7 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 				<View style={styles.detailedStatRow}>
 					<View style={styles.detailedStatItem}>
 						<Text style={styles.detailedStatLabel}>
-							Starting Weight
+							{t("startingWeight")}
 						</Text>
 						<Text style={styles.detailedStatValue}>
 							{stats.startWeight}kg
@@ -269,7 +276,7 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 					</View>
 					<View style={styles.detailedStatItem}>
 						<Text style={styles.detailedStatLabel}>
-							Avg. Increase
+							{t("avgIncrease")}
 						</Text>
 						<Text style={styles.detailedStatValue}>
 							{stats.averageIncrease > 0 ? "+" : ""}
@@ -278,14 +285,14 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 					</View>
 				</View>
 				<View style={styles.trendIndicator}>
-					<Text style={styles.trendLabel}>Trend: </Text>
+					<Text style={styles.trendLabel}>{t("trend")}: </Text>
 					<Text
 						style={[
 							styles.trendValue,
 							{ color: getTrendColor(stats.trend) },
 						]}
 					>
-						{stats.trend}
+						{t(stats.trend)}
 					</Text>
 				</View>
 			</View>
