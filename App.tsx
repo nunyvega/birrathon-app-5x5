@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "expo-status-bar";
 import { Platform, Text, View } from "react-native";
 import "./global.css";
+import { useTranslation } from "react-i18next";
+import "./src/i18n";
 
 // Import screens
 import WorkoutScreen from "./src/screens/WorkoutScreen";
@@ -20,6 +22,9 @@ import {
 	BorderRadius,
 	Shadows,
 } from "./src/styles/AppleDesignSystem";
+
+// Import LanguagePicker
+import LanguagePicker from "./src/components/LanguagePicker";
 
 // Create bottom tab navigator
 const Tab = createBottomTabNavigator();
@@ -103,6 +108,13 @@ const TabBarIcon = ({
 
 // Main App component
 export default function App() {
+	const [selectedLanguage, setSelectedLanguage] = useState("en");
+	const { t, i18n } = useTranslation();
+
+	React.useEffect(() => {
+		i18n.changeLanguage(selectedLanguage);
+	}, [selectedLanguage, i18n]);
+
 	return (
 		<WorkoutProvider>
 			<NavigationContainer theme={navigationTheme}>
@@ -173,22 +185,28 @@ export default function App() {
 
 						// Remove header shadow on Android
 						headerShadowVisible: false,
+						headerRight: () => (
+							<LanguagePicker
+								selectedLanguage={selectedLanguage}
+								onSelect={setSelectedLanguage}
+							/>
+						),
 					})}
 				>
 					<Tab.Screen
 						name="Workout"
 						component={WorkoutScreen}
 						options={{
-							tabBarLabel: "Workout",
-							headerTitle: "Workout",
+							tabBarLabel: t("headerTitle"),
+							headerTitle: t("headerTitle"),
 						}}
 					/>
 					<Tab.Screen
 						name="History"
 						component={HistoryScreen}
 						options={{
-							tabBarLabel: "History",
-							headerTitle: "Progress",
+							tabBarLabel: t("History"),
+							headerTitle: t("Progress"),
 						}}
 					/>
 				</Tab.Navigator>
