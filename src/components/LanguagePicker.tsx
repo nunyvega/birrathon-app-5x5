@@ -14,6 +14,7 @@ import {
 	Typography,
 	BorderRadius,
 } from "../styles/AppleDesignSystem";
+import { t } from "i18next";
 
 const LANGUAGES = [
 	{ code: "en", label: "English" },
@@ -35,8 +36,6 @@ export const LanguagePicker = ({
 		onSelect(code);
 	};
 
-	const selectedLabel =
-		LANGUAGES.find((l) => l.code === selectedLanguage)?.label || "Select";
 	return (
 		<>
 			<TouchableOpacity
@@ -44,7 +43,7 @@ export const LanguagePicker = ({
 				onPress={() => setModalVisible(true)}
 				activeOpacity={0.7}
 			>
-				<Text style={styles.triggerText}>{selectedLabel}</Text>
+				<Text style={styles.triggerText}>{t("Language")}</Text>
 			</TouchableOpacity>
 			<Modal
 				visible={modalVisible}
@@ -54,7 +53,6 @@ export const LanguagePicker = ({
 			>
 				<View style={styles.modalOverlay}>
 					<View style={styles.modalContent}>
-						<Text style={styles.modalTitle}>Choose Language</Text>
 						<FlatList
 							data={LANGUAGES}
 							keyExtractor={(item) => item.code}
@@ -83,7 +81,7 @@ export const LanguagePicker = ({
 							style={styles.cancelButton}
 							onPress={() => setModalVisible(false)}
 						>
-							<Text style={styles.cancelText}>Cancel</Text>
+							<Text style={styles.cancelText}>{t("cancel")}</Text>
 						</TouchableOpacity>
 					</View>
 				</View>
