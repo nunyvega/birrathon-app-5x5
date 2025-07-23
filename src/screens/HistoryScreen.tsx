@@ -205,7 +205,7 @@ export const HistoryScreen: React.FC = () => {
 								<Text
 									style={getExerciseButtonTextStyle(exercise)}
 								>
-									{exercise}
+									{t(exercise)}
 								</Text>
 							</TouchableOpacity>
 						))}
@@ -221,7 +221,7 @@ export const HistoryScreen: React.FC = () => {
 					<View style={styles.statsCard}>
 						<View style={styles.statsCardHeader}>
 							<Text style={styles.statsCardTitle}>
-								{selectedExercise}
+								{t(selectedExercise)}
 							</Text>
 							<Text style={styles.progressSummary}>
 								{getProgressSummary()}

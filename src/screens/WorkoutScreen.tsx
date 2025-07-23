@@ -229,7 +229,7 @@ export const WorkoutScreen: React.FC = () => {
 										<Text
 											style={styles.exercisePreviewText}
 										>
-											{exercise}
+											{t(exercise)}
 										</Text>
 									</View>
 								))}

@@ -189,7 +189,7 @@ export const ExerciseSetCard: React.FC<ExerciseSetCardProps> = ({
 			{/* Exercise Header */}
 			<View style={styles.header}>
 				<View style={styles.exerciseInfo}>
-					<Text style={styles.exerciseName}>{exercise.name}</Text>
+					<Text style={styles.exerciseName}>{t(exercise.name)}</Text>
 					<View style={styles.weightSection}>
 						<TouchableOpacity
 							style={styles.weightButton}

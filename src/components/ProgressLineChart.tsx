@@ -150,7 +150,7 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 			<View style={styles.container}>
 				<View style={styles.header}>
 					<Text style={styles.title}>
-						{t("progressTitle", { exercise })}
+						{t("progressTitle", { exercise: t(exercise) })}
 					</Text>
 					<Text style={styles.subtitle}>
 						{t("trackStrengthGains")}
@@ -161,7 +161,9 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 						{t("noDataAvailable")}
 					</Text>
 					<Text style={styles.emptyStateText}>
-						{t("completeSomeWorkoutsChart", { exercise })}
+						{t("completeSomeWorkoutsChart", {
+							exercise: t(exercise),
+						})}
 					</Text>
 				</View>
 			</View>
@@ -173,7 +175,7 @@ export const ProgressLineChart: React.FC<ProgressLineChartProps> = ({
 			{/* Header */}
 			<View style={styles.header}>
 				<Text style={styles.title}>
-					{t("progressTitle", { exercise })}
+					{t("progressTitle", { exercise: t(exercise) })}
 				</Text>
 				<Text style={styles.subtitle}>{t("trackStrengthGains")}</Text>
 			</View>

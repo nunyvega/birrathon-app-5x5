@@ -80,5 +80,10 @@
   "Stable": "Estable",
   "Increasing": "En aumento",
   "Decreasing": "En descenso",
-  "enterNewWeight": "Introduce el nuevo peso"
+  "enterNewWeight": "Introduce el nuevo peso",
+  "Squat": "Sentadilla",
+  "Bench Press": "Press de banca",
+  "Barbell Row": "Remo con barra",
+  "Overhead Press": "Press militar",
+  "Deadlift": "Peso muerto"
 } 
