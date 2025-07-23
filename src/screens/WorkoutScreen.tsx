@@ -81,15 +81,15 @@ export const WorkoutScreen: React.FC = () => {
 		try {
 			await updateWeight(exercise, newWeight);
 			Alert.alert(
-				"Weight Updated",
-				`${exercise} weight updated to ${newWeight} kg`,
+				t("weightUpdated"),
+				t("weightUpdatedMsg", { exercise, weight: newWeight }),
 				[{ text: "OK", style: "default" }],
 				{ cancelable: true }
 			);
 		} catch (error) {
 			Alert.alert(
-				"Error",
-				"Failed to update weight. Please try again.",
+				t("error"),
+				t("weightUpdateError"),
 				[{ text: "OK", style: "default" }],
 				{ cancelable: true }
 			);
@@ -106,18 +106,14 @@ export const WorkoutScreen: React.FC = () => {
 		);
 
 		if (!allExercisesCompleted) {
-			Alert.alert(
-				"Incomplete Workout",
-				"Some exercises are not completed. Are you sure you want to finish?",
-				[
-					{ text: "Cancel", style: "cancel" },
-					{
-						text: "Finish Anyway",
-						onPress: confirmFinishWorkout,
-						style: "destructive",
-					},
-				]
-			);
+			Alert.alert(t("incompleteWorkout"), t("incompleteWorkoutMsg"), [
+				{ text: "Cancel", style: "cancel" },
+				{
+					text: "Finish Anyway",
+					onPress: confirmFinishWorkout,
+					style: "destructive",
+				},
+			]);
 		} else {
 			confirmFinishWorkout();
 		}
@@ -131,15 +127,15 @@ export const WorkoutScreen: React.FC = () => {
 			await finishWorkout(currentSession);
 			setWorkoutInProgress(false);
 			Alert.alert(
-				"Workout Complete! 🎉",
-				`Excellent work! Your ${currentWorkoutType} workout is complete. Weights have been updated for your next session.`,
+				t("workoutComplete"),
+				t("workoutCompleteMsg", { type: currentWorkoutType }),
 				[{ text: "Awesome!", style: "default" }],
 				{ cancelable: true }
 			);
 		} catch (error) {
 			Alert.alert(
-				"Error",
-				"Failed to complete workout. Please try again.",
+				t("error"),
+				t("workoutCompleteError"),
 				[{ text: "OK", style: "default" }],
 				{ cancelable: true }
 			);
@@ -215,7 +211,7 @@ export const WorkoutScreen: React.FC = () => {
 						{/* Exercises Preview Card */}
 						<View style={styles.exercisePreviewCard}>
 							<Text style={styles.exercisePreviewTitle}>
-								Today's Exercises
+								{t("todaysExercises")}
 							</Text>
 							<View style={styles.exerciseList}>
 								{workoutExercises.map((exercise, index) => (
@@ -247,17 +243,16 @@ export const WorkoutScreen: React.FC = () => {
 							activeOpacity={0.8}
 						>
 							<Text style={styles.startButtonText}>
-								Start Workout
+								{t("startWorkout")}
 							</Text>
 						</TouchableOpacity>
 
 						{/* Tips Card */}
 						<View style={styles.tipsCard}>
-							<Text style={styles.tipsTitle}>💡 Quick Tips</Text>
-							<Text style={styles.tipsText}>
-								• Rest 90 seconds between sets{"\n"}• Focus on
-								proper form{"\n"}• Stay hydrated throughout
+							<Text style={styles.tipsTitle}>
+								{t("quickTips")}
 							</Text>
+							<Text style={styles.tipsText}>{t("tipsText")}</Text>
 						</View>
 					</ScrollView>
 				) : (
@@ -266,7 +261,9 @@ export const WorkoutScreen: React.FC = () => {
 						{/* Progress Header */}
 						<View style={styles.progressHeader}>
 							<Text style={styles.progressTitle}>
-								Workout {currentWorkoutType} in Progress
+								{t("workoutInProgress", {
+									type: currentWorkoutType,
+								})}
 							</Text>
 							<View style={styles.progressContainer}>
 								<View style={styles.progressBar}>
@@ -280,7 +277,10 @@ export const WorkoutScreen: React.FC = () => {
 									/>
 								</View>
 								<Text style={styles.progressText}>
-									{Math.round(getWorkoutProgress())}% Complete
+									{t("completePercent", {
+										percent:
+											Math.round(getWorkoutProgress()),
+									})}
 								</Text>
 							</View>
 						</View>
@@ -321,7 +321,7 @@ export const WorkoutScreen: React.FC = () => {
 									activeOpacity={0.8}
 								>
 									<Text style={styles.finishButtonText}>
-										Complete Workout
+										{t("completeWorkout")}
 									</Text>
 								</TouchableOpacity>
 							</View>
