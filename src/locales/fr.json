@@ -30,5 +30,16 @@
   "pause": "Pause",
   "start": "Démarrer",
   "reset": "Réinitialiser",
-  "target": "Objectif : {{minutes}}:{{seconds}}"
+  "target": "Objectif : {{minutes}}:{{seconds}}",
+  "tapToEdit": "appuyez pour modifier",
+  "complete": "✓ Terminé",
+  "percentComplete": "{{percent}}% Terminé",
+  "setsTitle": "Séries ({{reps}} répétitions chacune)",
+  "deadliftNote": "💪 Effectuez 1 série de 5 répétitions avec une forme parfaite",
+  "defaultNote": "🏋️‍♂️ Effectuez 5 séries de 5 répétitions • Concentrez-vous sur la forme plutôt que sur la vitesse",
+  "invalidWeight": "Poids invalide",
+  "invalidWeightMsg": "Veuillez entrer un poids valide entre 1 et 500 kg.",
+  "updateWeight": "Mettre à jour le poids",
+  "currentWeightPrompt": "Poids actuel : {{weight}} kg\nEntrez le nouveau poids :",
+  "update": "Mettre à jour"
 } 

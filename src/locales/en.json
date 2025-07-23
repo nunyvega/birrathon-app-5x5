@@ -30,5 +30,16 @@
   "pause": "Pause",
   "start": "Start",
   "reset": "Reset",
-  "target": "Target: {{minutes}}:{{seconds}}"
+  "target": "Target: {{minutes}}:{{seconds}}",
+  "tapToEdit": "tap to edit",
+  "complete": "✓ Complete",
+  "percentComplete": "{{percent}}% Complete",
+  "setsTitle": "Sets ({{reps}} reps each)",
+  "deadliftNote": "💪 Complete 1 set of 5 reps with perfect form",
+  "defaultNote": "🏋️‍♂️ Complete 5 sets of 5 reps • Focus on form over speed",
+  "invalidWeight": "Invalid Weight",
+  "invalidWeightMsg": "Please enter a valid weight between 1-500 kg.",
+  "updateWeight": "Update Weight",
+  "currentWeightPrompt": "Current weight: {{weight}} kg\nEnter new weight:",
+  "update": "Update"
 } 
