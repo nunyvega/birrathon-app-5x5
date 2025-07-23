@@ -1,5 +1,7 @@
 {
   "hello": "Bonjour",
   "welcome": "Bienvenue",
-  "headerTitle": "Entraînement"
+  "headerTitle": "Entraînement",
+  "workoutHeader": "Prêt pour l'entraînement {{type}} ?",
+  "workoutSubtitle": "Construisons de la force aujourd'hui"
 } 

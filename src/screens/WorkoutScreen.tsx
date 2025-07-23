@@ -21,6 +21,7 @@ import {
 	CardStyles,
 	ButtonStyles,
 } from "../styles/AppleDesignSystem";
+import { useTranslation } from "react-i18next";
 
 const { width: screenWidth } = Dimensions.get("window");
 
@@ -38,6 +39,7 @@ export const WorkoutScreen: React.FC = () => {
 
 	const [workoutInProgress, setWorkoutInProgress] = useState(false);
 	const [fadeAnim] = useState(new Animated.Value(0));
+	const { t } = useTranslation();
 
 	// Check if there's a current session on mount
 	useEffect(() => {
@@ -201,10 +203,12 @@ export const WorkoutScreen: React.FC = () => {
 						{/* Header Section */}
 						<View style={styles.headerSection}>
 							<Text style={styles.workoutTitle}>
-								Ready for Workout {currentWorkoutType}?
+								{t("workoutHeader", {
+									type: currentWorkoutType,
+								})}
 							</Text>
 							<Text style={styles.workoutSubtitle}>
-								Let's build some strength today
+								{t("workoutSubtitle")}
 							</Text>
 						</View>
 
