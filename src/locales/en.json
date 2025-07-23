@@ -21,5 +21,14 @@
   "finishAnyway": "Finish Anyway",
   "workoutComplete": "Workout Complete! 🎉",
   "workoutCompleteMsg": "Excellent work! Your {{type}} workout is complete. Weights have been updated for your next session.",
-  "awesome": "Awesome!"
+  "awesome": "Awesome!",
+  "readyToStart": "Ready to start",
+  "paused": "Paused",
+  "readyForNextSet": "Ready for next set! 💪",
+  "secondsLeft": "{{seconds}} seconds left",
+  "remainingTime": "{{minutes}}:{{seconds}} remaining",
+  "pause": "Pause",
+  "start": "Start",
+  "reset": "Reset",
+  "target": "Target: {{minutes}}:{{seconds}}"
 } 
