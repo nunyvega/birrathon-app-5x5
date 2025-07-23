@@ -28,6 +28,8 @@ export const RestTimer: React.FC<RestTimerProps> = ({
 	const [hasVibrated, setHasVibrated] = useState(false);
 	const [pulseAnim] = useState(new Animated.Value(1));
 	const [progressAnim] = useState(new Animated.Value(0));
+	const [isPulseRunning, setIsPulseRunning] = useState(false);
+	const pulseAnimRef = React.useRef<Animated.CompositeAnimation | null>(null);
 	const { t } = useTranslation();
 
 	// Timer effect
@@ -49,17 +51,15 @@ export const RestTimer: React.FC<RestTimerProps> = ({
 
 	// Progress animation
 	useEffect(() => {
-		if (isRunning) {
-			const progress = Math.min(elapsedSeconds / restTarget, 1);
-			Animated.timing(progressAnim, {
-				toValue: progress,
-				duration: 300,
-				useNativeDriver: false,
-			}).start();
-		}
-	}, [elapsedSeconds, restTarget, isRunning, progressAnim]);
+		const progress = Math.min(elapsedSeconds / restTarget, 1);
+		Animated.timing(progressAnim, {
+			toValue: progress,
+			duration: 300,
+			useNativeDriver: false,
+		}).start();
+	}, [elapsedSeconds, restTarget, progressAnim]);
 
-	// Vibration and pulse effect when target time is reached
+	// Vibration when target time is reached
 	useEffect(() => {
 		if (isRunning && elapsedSeconds >= restTarget && !hasVibrated) {
 			// Vibration
@@ -69,8 +69,13 @@ export const RestTimer: React.FC<RestTimerProps> = ({
 				Vibration.vibrate([0, 200, 100, 200, 100, 200]);
 			}
 			setHasVibrated(true);
+		}
+	}, [elapsedSeconds, restTarget, hasVibrated, isRunning]);
 
-			// Pulse animation
+	// Pulse animation: start when elapsedSeconds >= restTarget, stop on reset
+	useEffect(() => {
+		if (elapsedSeconds >= restTarget && !isPulseRunning) {
+			setIsPulseRunning(true);
 			const pulse = () => {
 				Animated.sequence([
 					Animated.timing(pulseAnim, {
@@ -84,24 +89,36 @@ export const RestTimer: React.FC<RestTimerProps> = ({
 						useNativeDriver: true,
 					}),
 				]).start(() => {
-					if (elapsedSeconds >= restTarget) {
+					if (isPulseRunning && elapsedSeconds >= restTarget) {
 						pulse();
 					}
 				});
 			};
 			pulse();
 		}
-	}, [elapsedSeconds, restTarget, hasVibrated, isRunning, pulseAnim]);
-
-	// Reset state when timer is reset
-	useEffect(() => {
-		if (!isRunning) {
-			setElapsedSeconds(0);
-			setHasVibrated(false);
-			progressAnim.setValue(0);
+		if (elapsedSeconds < restTarget && isPulseRunning) {
+			setIsPulseRunning(false);
+			pulseAnim.stopAnimation();
 			pulseAnim.setValue(1);
 		}
-	}, [isRunning, progressAnim, pulseAnim]);
+		// Stop pulse on reset (elapsedSeconds === 0)
+		if (elapsedSeconds === 0 && isPulseRunning) {
+			setIsPulseRunning(false);
+			pulseAnim.stopAnimation();
+			pulseAnim.setValue(1);
+		}
+	}, [elapsedSeconds, restTarget, isPulseRunning, pulseAnim]);
+
+	// Reset state when reset button is pressed
+	const handleReset = () => {
+		setElapsedSeconds(0);
+		setHasVibrated(false);
+		progressAnim.setValue(0);
+		pulseAnim.stopAnimation();
+		pulseAnim.setValue(1);
+		setIsPulseRunning(false);
+		if (onReset) onReset();
+	};
 
 	// Format time display
 	const formatTime = (seconds: number): string => {
@@ -188,7 +205,7 @@ export const RestTimer: React.FC<RestTimerProps> = ({
 
 				<TouchableOpacity
 					style={[styles.controlButton, styles.resetButton]}
-					onPress={onReset}
+					onPress={handleReset}
 					activeOpacity={0.8}
 				>
 					<Text style={styles.controlButtonText}>{t("reset")}</Text>
