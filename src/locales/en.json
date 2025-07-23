@@ -41,5 +41,8 @@
   "invalidWeightMsg": "Please enter a valid weight between 1-500 kg.",
   "updateWeight": "Update Weight",
   "currentWeightPrompt": "Current weight: {{weight}} kg\nEnter new weight:",
-  "update": "Update"
+  "update": "Update",
+  "ok": "OK",
+  "loadingWorkout": "Loading your workout...",
+  "workoutCompleteError": "Failed to complete workout. Please try again."
 } 

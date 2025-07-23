@@ -41,5 +41,8 @@
   "invalidWeightMsg": "Por favor, introduce un peso válido entre 1-500 kg.",
   "updateWeight": "Actualizar peso",
   "currentWeightPrompt": "Peso actual: {{weight}} kg\nIntroduce el nuevo peso:",
-  "update": "Actualizar"
+  "update": "Actualizar",
+  "ok": "OK",
+  "loadingWorkout": "Cargando tu entrenamiento...",
+  "workoutCompleteError": "No se pudo completar el entrenamiento. Por favor, inténtalo de nuevo."
 } 

@@ -83,14 +83,14 @@ export const WorkoutScreen: React.FC = () => {
 			Alert.alert(
 				t("weightUpdated"),
 				t("weightUpdatedMsg", { exercise, weight: newWeight }),
-				[{ text: "OK", style: "default" }],
+				[{ text: t("ok"), style: "default" }],
 				{ cancelable: true }
 			);
 		} catch (error) {
 			Alert.alert(
 				t("error"),
 				t("weightUpdateError"),
-				[{ text: "OK", style: "default" }],
+				[{ text: t("ok"), style: "default" }],
 				{ cancelable: true }
 			);
 		}
@@ -107,9 +107,9 @@ export const WorkoutScreen: React.FC = () => {
 
 		if (!allExercisesCompleted) {
 			Alert.alert(t("incompleteWorkout"), t("incompleteWorkoutMsg"), [
-				{ text: "Cancel", style: "cancel" },
+				{ text: t("cancel"), style: "cancel" },
 				{
-					text: "Finish Anyway",
+					text: t("finishAnyway"),
 					onPress: confirmFinishWorkout,
 					style: "destructive",
 				},
@@ -129,14 +129,14 @@ export const WorkoutScreen: React.FC = () => {
 			Alert.alert(
 				t("workoutComplete"),
 				t("workoutCompleteMsg", { type: currentWorkoutType }),
-				[{ text: "Awesome!", style: "default" }],
+				[{ text: t("awesome"), style: "default" }],
 				{ cancelable: true }
 			);
 		} catch (error) {
 			Alert.alert(
 				t("error"),
 				t("workoutCompleteError"),
-				[{ text: "OK", style: "default" }],
+				[{ text: t("ok"), style: "default" }],
 				{ cancelable: true }
 			);
 		}
@@ -174,7 +174,7 @@ export const WorkoutScreen: React.FC = () => {
 				/>
 				<View style={styles.loadingContainer}>
 					<Text style={styles.loadingText}>
-						Loading your workout...
+						{t("loadingWorkout")}
 					</Text>
 				</View>
 			</SafeAreaView>
