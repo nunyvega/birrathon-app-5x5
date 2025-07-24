@@ -98,11 +98,11 @@ const styles = StyleSheet.create({
 		borderRadius: BorderRadius.large,
 		alignItems: "center",
 		justifyContent: "center",
-		minWidth: 80,
+		minWidth: 60,
 		marginHorizontal: Spacing.md,
 	},
 	triggerText: {
-		...Typography.body,
+		...Typography.footnote,
 		color: Colors.systemGray,
 	},
 	modalOverlay: {
