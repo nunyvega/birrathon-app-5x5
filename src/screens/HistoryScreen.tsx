@@ -499,7 +499,7 @@ const styles = {
 		...Shadows.level1,
 	},
 	headerTitle: {
-		...Typography.title2,
+		...Typography.headline,
 		color: Colors.label,
 	},
 	statsToggleButton: {
