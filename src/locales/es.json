@@ -87,5 +87,11 @@
   "Overhead Press": "Press militar",
   "Deadlift": "Peso muerto",
   "Progress": "Progreso",
-  "Language": "Idioma"
+  "Language": "Cambiar idioma",
+  "clearData": "Borrar datos",
+  "clearDataConfirm": "¿Estás seguro de querer limpiar todos los datos de tu entrenamiento? Esta acción no se puede deshacer.",
+  "clearDataSuccess": "Todos los datos han sido limpiados.",
+  "clearDataError": "No se pudo limpiar los datos. Por favor, inténtalo de nuevo.",
+  "Settings": "Configuración",
+  "History": "Historial"
 } 

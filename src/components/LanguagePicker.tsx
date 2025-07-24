@@ -92,18 +92,19 @@ export const LanguagePicker = ({
 
 const styles = StyleSheet.create({
 	trigger: {
+		width: "100%",
+		height: 50,
+		marginBottom: Spacing.md,
 		paddingHorizontal: Spacing.lg,
 		paddingVertical: Spacing.sm,
-		backgroundColor: Colors.systemGray6,
-		borderRadius: BorderRadius.large,
+		backgroundColor: Colors.systemGray2,
+		borderRadius: BorderRadius.small,
 		alignItems: "center",
 		justifyContent: "center",
-		minWidth: 60,
-		marginHorizontal: Spacing.md,
 	},
 	triggerText: {
-		...Typography.footnote,
-		color: Colors.systemGray,
+		...Typography.title3,
+		color: Colors.systemBackground,
 	},
 	modalOverlay: {
 		flex: 1,

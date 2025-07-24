@@ -24,8 +24,7 @@ import {
 	Shadows,
 } from "./src/styles/AppleDesignSystem";
 
-// Import LanguagePicker
-import LanguagePicker from "./src/components/LanguagePicker";
+import SettingsScreen from "./src/screens/SettingsScreen";
 
 // Create bottom tab navigator
 const Tab = createBottomTabNavigator();
@@ -81,6 +80,10 @@ const TabBarIcon = ({
 		History: {
 			focused: "📊",
 			unfocused: "📈",
+		},
+		Settings: {
+			focused: "⚙️",
+			unfocused: "⚙️",
 		},
 	};
 
@@ -204,12 +207,6 @@ export default function App() {
 
 						// Remove header shadow on Android
 						headerShadowVisible: false,
-						headerRight: () => (
-							<LanguagePicker
-								selectedLanguage={selectedLanguage}
-								onSelect={handleLanguageChange}
-							/>
-						),
 					})}
 				>
 					<Tab.Screen
@@ -226,6 +223,14 @@ export default function App() {
 						options={{
 							tabBarLabel: t("History"),
 							headerTitle: t("Progress"),
+						}}
+					/>
+					<Tab.Screen
+						name="Settings"
+						component={SettingsScreen}
+						options={{
+							tabBarLabel: t("Settings"),
+							headerTitle: t("Settings"),
 						}}
 					/>
 				</Tab.Navigator>

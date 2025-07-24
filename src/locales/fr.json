@@ -87,5 +87,11 @@
   "Overhead Press": "Développé militaire",
   "Deadlift": "Soulevé de terre",
   "Progress": "Progression",
-  "Language": "Langue"
+  "Language": "Langue",
+  "clearData": "Supprimer les données",
+  "clearDataConfirm": "Êtes-vous sûr de vouloir supprimer toutes les données de votre entraînement ? Cette action est irréversible.",
+  "clearDataSuccess": "Toutes les données ont été supprimées.",
+  "clearDataError": "La suppression des données a échoué. Veuillez réessayer.",
+  "Settings": "Paramètres",
+  "History": "Historique"
 } 

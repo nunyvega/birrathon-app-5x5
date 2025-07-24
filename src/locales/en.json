@@ -87,5 +87,11 @@
   "Overhead Press": "Overhead Press",
   "Deadlift": "Deadlift",
   "Progress": "Progress",
-  "Language": "Language"
+  "Language": "Language",
+  "clearData": "Clear Data",
+  "clearDataConfirm": "Are you sure you want to clear all your workout data? This cannot be undone.",
+  "clearDataSuccess": "All data has been cleared.",
+  "clearDataError": "Failed to clear data. Please try again.",
+  "Settings": "Settings",
+  "History": "History"
 } 
