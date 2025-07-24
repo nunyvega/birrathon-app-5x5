@@ -112,7 +112,7 @@ export const HistoryScreen: React.FC = () => {
 	// Get progress summary
 	const getProgressSummary = () => {
 		if (exerciseHistory.length === 0) {
-			return "No workout history yet";
+			return t("noDataYet");
 		}
 
 		const firstSession = exerciseHistory[0];
@@ -457,7 +457,7 @@ export const HistoryScreen: React.FC = () => {
 							</Text>
 							<Text style={styles.emptyStateText}>
 								{t("completeSomeWorkouts", {
-									exercise: selectedExercise,
+									exercise: t(selectedExercise),
 								})}
 							</Text>
 						</View>

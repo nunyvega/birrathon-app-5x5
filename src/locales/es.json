@@ -65,7 +65,7 @@
   "successfulSession": "Sesión exitosa",
   "incompleteSession": "Sesión incompleta",
   "noDataYet": "Sin datos aún",
-  "completeSomeWorkouts": "Completa algunos entrenamientos con {{exercise}} para ver tu progreso aquí.",
+  "completeSomeWorkouts": "Completa algunos entrenamientos de {{exercise}} para ver tu progreso aquí.",
   "loadingProgress": "Cargando tu progreso...",
   "progressTitle": "Progreso de {{exercise}}",
   "trackStrengthGains": "Sigue tu incremento de fuerza",
