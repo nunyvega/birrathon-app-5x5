@@ -6,7 +6,6 @@ import {
 	TouchableOpacity,
 	SafeAreaView,
 	StatusBar,
-	Dimensions,
 	Animated,
 } from "react-native";
 
@@ -23,8 +22,6 @@ import {
 } from "../styles/AppleDesignSystem";
 import { Exercise } from "../types/types";
 import { useTranslation } from "react-i18next";
-
-const { width: screenWidth } = Dimensions.get("window");
 
 const EXERCISES: Exercise[] = [
 	"Squat",

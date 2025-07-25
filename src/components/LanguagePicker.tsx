@@ -53,6 +53,9 @@ export const LanguagePicker = ({
 			>
 				<View style={styles.modalOverlay}>
 					<View style={styles.modalContent}>
+						<Text style={styles.modalTitle}>
+							{t("ChooseLanguage")}
+						</Text>
 						<FlatList
 							data={LANGUAGES}
 							keyExtractor={(item) => item.code}

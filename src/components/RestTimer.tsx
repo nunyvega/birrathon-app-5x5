@@ -29,7 +29,6 @@ export const RestTimer: React.FC<RestTimerProps> = ({
 	const [pulseAnim] = useState(new Animated.Value(1));
 	const [progressAnim] = useState(new Animated.Value(0));
 	const [isPulseRunning, setIsPulseRunning] = useState(false);
-	const pulseAnimRef = React.useRef<Animated.CompositeAnimation | null>(null);
 	const { t } = useTranslation();
 
 	// Timer effect
@@ -150,11 +149,6 @@ export const RestTimer: React.FC<RestTimerProps> = ({
 			minutes: Math.floor(remaining / 60),
 			seconds: (remaining % 60).toString().padStart(2, "0"),
 		});
-	};
-
-	// Get progress percentage
-	const getProgressPercentage = () => {
-		return Math.min((elapsedSeconds / restTarget) * 100, 100);
 	};
 
 	return (

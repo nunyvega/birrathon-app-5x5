@@ -93,5 +93,6 @@
   "clearDataSuccess": "All data has been cleared.",
   "clearDataError": "Failed to clear data. Please try again.",
   "Settings": "Settings",
-  "History": "History"
+  "History": "History",
+  "ChooseLanguage": "Choose Language"
 } 

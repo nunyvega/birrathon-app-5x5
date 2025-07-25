@@ -93,5 +93,6 @@
   "clearDataSuccess": "Todos los datos han sido limpiados.",
   "clearDataError": "No se pudo limpiar los datos. Por favor, inténtalo de nuevo.",
   "Settings": "Configuración",
-  "History": "Historial"
+  "History": "Historial",
+  "ChooseLanguage": "Selecciona el idioma"
 } 

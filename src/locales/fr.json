@@ -93,5 +93,6 @@
   "clearDataSuccess": "Toutes les données ont été supprimées.",
   "clearDataError": "La suppression des données a échoué. Veuillez réessayer.",
   "Settings": "Paramètres",
-  "History": "Historique"
+  "History": "Historique",
+  "ChooseLanguage": "Choisir la langue"
 } 

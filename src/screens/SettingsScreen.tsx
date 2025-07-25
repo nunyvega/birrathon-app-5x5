@@ -5,7 +5,6 @@ import {
 	Text,
 	TouchableOpacity,
 	Alert,
-	Platform,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useWorkout } from "../context/WorkoutContext";
@@ -18,11 +17,20 @@ import {
 } from "../styles/AppleDesignSystem";
 import LanguagePicker from "../components/LanguagePicker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
+import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+
+type TabParamList = {
+	Workout: undefined;
+	History: undefined;
+	Settings: undefined;
+};
 
 const SettingsScreen: React.FC = () => {
 	const { t, i18n } = useTranslation();
 	const { clearAllData } = useWorkout();
 	const [selectedLanguage, setSelectedLanguage] = useState("en");
+	const navigation = useNavigation<BottomTabNavigationProp<TabParamList>>();
 
 	// Load language from AsyncStorage on mount
 	useEffect(() => {
@@ -55,6 +63,7 @@ const SettingsScreen: React.FC = () => {
 					onPress: async () => {
 						try {
 							await clearAllData();
+							navigation.navigate("Workout");
 							Alert.alert(t("clearData"), t("clearDataSuccess"));
 						} catch (e) {
 							Alert.alert(t("error"), t("clearDataError"));
