@@ -94,5 +94,7 @@
   "clearDataError": "No se pudo limpiar los datos. Por favor, inténtalo de nuevo.",
   "Settings": "Configuración",
   "History": "Historial",
-  "ChooseLanguage": "Selecciona el idioma"
+  "ChooseLanguage": "Selecciona el idioma",
+  "contact": "Contacto",
+  "contactText": "Si tienes alguna pregunta o sugerencia, no dudes en contactarnos."
 } 

@@ -116,8 +116,6 @@ const styles = StyleSheet.create({
 	},
 	modalContent: {
 		backgroundColor: Colors.systemBackground,
-		borderTopLeftRadius: BorderRadius.xl,
-		borderTopRightRadius: BorderRadius.xl,
 		padding: Spacing.xl,
 		paddingBottom: Platform.OS === "ios" ? 40 : 20,
 		minHeight: 200,

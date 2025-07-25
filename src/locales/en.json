@@ -94,5 +94,7 @@
   "clearDataError": "Failed to clear data. Please try again.",
   "Settings": "Settings",
   "History": "History",
-  "ChooseLanguage": "Choose Language"
+  "ChooseLanguage": "Choose Language",
+  "contact": "Contact",
+  "contactText": "If you have any questions or suggestions, please feel free to contact us."
 } 

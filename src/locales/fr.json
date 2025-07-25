@@ -94,5 +94,7 @@
   "clearDataError": "La suppression des données a échoué. Veuillez réessayer.",
   "Settings": "Paramètres",
   "History": "Historique",
-  "ChooseLanguage": "Choisir la langue"
+  "ChooseLanguage": "Choisir la langue",
+  "contact": "Contact",
+  "contactText": "Si vous avez des questions ou des suggestions, n'hésitez pas à nous contacter."
 } 
