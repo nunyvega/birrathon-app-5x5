@@ -4,12 +4,20 @@
     "slug": "Strong5x5Lite",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon":  "./assets/images/5x5-splash.png",
+    "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#E5E3DD"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.maxirobles.Strong5x5Lite",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -21,6 +29,11 @@
     "web": {
       "bundler": "metro",
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2369204e-77b6-4342-b7dc-139c824dc170"
+      }
     }
   }
 }
